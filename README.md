@@ -1,3 +1,13 @@
+---
+title: Werewolf Online
+emoji: 🐺
+colorFrom: red
+colorTo: indigo
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # 🐺 Werewolf Online — Desa 3D Multiplayer
 
 Game social deduction Werewolf yang dimainkan bareng teman di browser: buat room, bagikan kode atau link, lalu main realtime di desa 3D dengan siklus siang–malam.

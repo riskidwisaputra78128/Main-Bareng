@@ -148,6 +148,22 @@ hr{border:0;border-top:1px solid var(--line);margin:2px 0}
   #dock{bottom:8px;padding:12px}
 }
 </style>
+<script>
+  /* Server TURN (Metered Open Relay, gratis 20 GB/bulan) supaya pemain beda jaringan bisa join.
+     Isi dengan URL dari dashboard Metered, contoh:
+     https://namaapp.metered.live/api/v1/turn/credentials?apiKey=XXXX  */
+  window.WW_TURN_URL = "";
+  /* Firebase Realtime Database: kalau diisi, game memakai Firebase (lebih stabil dari P2P). */
+  window.WW_FIREBASE = {
+    apiKey: "AIzaSyDADDkfjjsxud1KsL-hQ-zMEkYaCpA_zbY",
+    authDomain: "risky-3a77e.firebaseapp.com",
+    databaseURL: "https://risky-3a77e-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "risky-3a77e",
+    storageBucket: "risky-3a77e.firebasestorage.app",
+    messagingSenderId: "581884662106",
+    appId: "1:581884662106:web:0c7ee2e148548f81d2a363"
+  };
+</script>
 </head>
 <body>
 <canvas id="scene"></canvas>

@@ -1,5 +1,6 @@
 import { Village } from './village.js';
 import { OnlineTransport, OfflineTransport, P2PTransport } from './transport.js';
+import { FirebaseTransport, hasFirebase } from './fbtransport.js';
 import { ROLES, SPECIALS } from '../../shared/engine.js';
 import { Audio } from './audio.js';
 
@@ -31,7 +32,7 @@ function setStatus(s) {
   const dot = $('dot');
   dot.className = 'dot ' + (s === 'online' ? 'on' : s === 'error' ? 'err' : '');
   if (MODE === 'static') {
-    $('statusText').textContent = s === 'reconnecting' ? 'Koneksi terputus, mencoba menyambung ulang…' : 'Mode tanpa server · pemain tersambung langsung ke browser host';
+    $('statusText').textContent = s === 'reconnecting' ? 'Koneksi terputus, mencoba menyambung ulang…' : (hasFirebase() ? 'Online via Firebase · siap main bareng' : 'Mode tanpa server · pemain tersambung langsung ke browser host');
     return;
   }
   $('statusText').textContent = s === 'online' ? 'Terhubung ke server — siap main online' : s === 'error' ? 'Server tidak terjangkau. Kamu tetap bisa latihan offline.' : 'Terputus, mencoba menyambung ulang…';
@@ -40,7 +41,7 @@ if (MODE === 'offline') {
   document.querySelectorAll('.online-only').forEach((e) => e.classList.add('hidden'));
   $('statusText').textContent = 'Versi demo offline — main melawan bot.';
 } else if (MODE === 'static') {
-  net = new P2PTransport(sid);
+  net = hasFirebase() ? new FirebaseTransport(sid) : new P2PTransport(sid);
   document.body.classList.add('static');
   document.querySelectorAll('.server-only').forEach((e) => e.classList.add('hidden'));
   setStatus('online'); $('dot').className = 'dot on';
